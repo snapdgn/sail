@@ -53,6 +53,13 @@ jobs:
         opam pin --yes --no-action add .
         opam install sail --yes
 
+    - name: Package sail as artifact
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+          name: sail-artifact
+          path: ~/.opam/5.0.0/bin/sail
+
     - name: Test Sail
       run: |
         eval $(opam env)
